@@ -5,59 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jay's Freedom Counter</title>
     <style>
-        /* Reset and layout setup */
+        /* Resets and background setup */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* Deep dark law-enforcement blue background */
-            background-color: #040c17;
-            color: #ffffff;
+            /* Background police retirement image with a dark blue tint overlay */
+            background: linear-gradient(rgba(10, 25, 47, 0.75), rgba(5, 15, 35, 0.85)), 
+                        url('https://unsplash.com') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
             text-align: center;
-            padding: 20px;
         }
 
-        /* Container card */
-        .counter-container {
-            background: rgba(11, 27, 51, 0.88); 
-            padding: 40px;
+        /* Container card with deep police blue theme */
+        .container {
+            background: rgba(13, 27, 42, 0.9); /* Strong Navy/Police Blue card background */
+            padding: 40px 60px;
             border-radius: 15px;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
-            border: 2px solid #1e40af; /* Metro Blue border accent */
+            box-shadow: 0 0 25px rgba(0, 102, 204, 0.4); /* Police blue ambient outer glow */
+            border: 3px solid #0056b3; /* Solid royal blue frame border */
             max-width: 800px;
-            width: 100%;
+            width: 90%;
         }
 
         h1 {
             font-size: 3rem;
-            margin-bottom: 5px;
-            letter-spacing: 2px;
+            margin-bottom: 10px;
             text-transform: uppercase;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+            letter-spacing: 2px;
             color: #ffffff;
+            text-shadow: 0 0 10px rgba(0, 153, 255, 0.6); /* Blue title glow */
         }
 
         .subtitle {
             font-size: 1.2rem;
-            margin-bottom: 40px;
-            color: #60a5fa; /* Vibrant soft blue label highlight */
-            font-weight: 600;
-            letter-spacing: 1.5px;
+            color: #8ecae6; /* Crisp light-blue accent text */
+            margin-bottom: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
-        /* Countdown display grid */
-        .countdown {
+        /* Countdown display block layout */
+        .countdown-wrapper {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
@@ -65,110 +64,104 @@
         }
 
         .time-box {
-            background: rgba(2, 6, 12, 0.65);
-            padding: 22px 20px;
-            border-radius: 12px;
-            min-width: 135px;
             flex: 1;
-            border: 1px solid rgba(30, 64, 175, 0.4);
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
+            min-width: 120px;
+            padding: 20px 15px;
+            background: rgba(22, 38, 57, 0.9); /* Darker contrast blue inner boxes */
+            border-radius: 8px;
+            border: 1px solid rgba(0, 153, 255, 0.3); /* Subtle blue boundary line */
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
-        /* Color formatting rules specified */
+        /* Styling numbers according to rules */
         .number {
-            display: block;
-            font-size: 3.6rem;
-            font-weight: 700;
-            color: #ffff00; /* Yellow numbers for Days, Hours, and Minutes */
-            text-shadow: 0 0 15px rgba(255, 255, 0, 0.35);
-        }
-
-        /* Custom rule: Red numbers strictly for the seconds module */
-        .seconds-box .number {
-            color: #ff0000; /* Red numbers for Seconds */
-            text-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
-        }
-
-        .label {
-            display: block;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-top: 12px;
-            color: #ffffff; /* White labels for text headings */
-            font-weight: 500;
-        }
-
-        /* Arrival state block */
-        #expired-message {
-            font-size: 2.5rem;
-            color: #ffff00;
-            display: none;
+            font-size: 3.5rem;
             font-weight: bold;
-            text-shadow: 0 0 10px rgba(255,255,0,0.4);
+            display: block;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
-        /* Adaptive screen layouts */
-        @media (max-width: 600px) {
-            h1 { font-size: 2.1rem; }
-            .subtitle { font-size: 0.95rem; margin-bottom: 25px; }
-            .number { font-size: 2.4rem; }
-            .time-box { min-width: 105px; padding: 15px 10px; }
+        /* Requirements: yellow for days/hours/minutes */
+        .yellow-num {
+            color: #ffff00; 
+        }
+
+        /* Requirements: red for seconds */
+        .red-num {
+            color: #ff3333; 
+        }
+
+        /* Requirement: white labels */
+        .label {
+            font-size: 1rem;
+            color: #ffffff; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            display: block;
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
 
-    <div class="counter-container">
+    <div class="container">
         <h1>Jay's Freedom Counter</h1>
-        <p class="subtitle">Honoring 30 Years of Metro Nashville Police Service</p>
+        <div class="subtitle">Honoring 30 Years of Police Service & Protection</div>
         
-        <div id="countdown-display" class="countdown">
+        <div class="countdown-wrapper">
             <div class="time-box">
-                <span id="days" class="number">00</span>
+                <span class="number yellow-num" id="days">00</span>
                 <span class="label">Days</span>
             </div>
             <div class="time-box">
-                <span id="hours" class="number">00</span>
+                <span class="number yellow-num" id="hours">00</span>
                 <span class="label">Hours</span>
             </div>
             <div class="time-box">
-                <span id="minutes" class="number">00</span>
+                <span class="number yellow-num" id="minutes">00</span>
                 <span class="label">Minutes</span>
             </div>
-            <div class="time-box seconds-box">
-                <span id="seconds" class="number">00</span>
+            <div class="time-box">
+                <span class="number red-num" id="seconds">00</span>
                 <span class="label">Seconds</span>
             </div>
         </div>
-
-        <div id="expired-message">Happy Retirement, Jay! Thank you for protecting Nashville!</div>
     </div>
 
     <script>
-        // Exact target config: February 11th, 2030 at 1600 hours (4:00 PM local time)
+        // Set target date: February 11th, 2030 at 16:00:00 (4:00 PM)
         const targetDate = new Date("Feb 11, 2030 16:00:00").getTime();
 
-        const interval = setInterval(function() {
+        function updateCountdown() {
             const now = new Date().getTime();
             const difference = targetDate - now;
 
+            // Display message once retirement time arrives
+            if (difference <= 0) {
+                document.querySelector(".countdown-wrapper").innerHTML = 
+                    "<h2 style='color: #ffff00; font-size: 2rem; width: 100%; text-shadow: 0 0 10px #0066cc;'>Happy Retirement, Jay! Your Shift Is Over!</h2>";
+                clearInterval(timerInterval);
+                return;
+            }
+
+            // Calculations for time fragments
             const days = Math.floor(difference / (1000 * 60 * 60 * 24));
             const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+            // Output values into HTML elements with mandatory leading zero fallback
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        }
 
-            if (difference < 0) {
-                clearInterval(interval);
-                document.getElementById("countdown-display").style.display = "none";
-                document.getElementById("expired-message").style.display = "block";
-            }
-        }, 1000);
+        // Initialize clock mechanics immediately
+        updateCountdown();
+        const timerInterval = setInterval(updateCountdown, 1000);
     </script>
 
 </body>
