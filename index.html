@@ -155,37 +155,43 @@
     </div>
 
     <script>
-        // Set target date: February 11th, 2030 at 16:00:00 (4:00 PM)
-        const targetDate = new Date("Feb 11, 2030 16:00:00").getTime();
+    // Set target date: February 11th, 2030 at 16:00:00 (4:00 PM)
+    const targetDate = new Date("Feb 11, 2030 16:00:00").getTime();
 
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const difference = targetDate - now;
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const difference = targetDate - now;
 
-            // Display message once retirement time arrives
-            if (difference <= 0) {
-                document.querySelector(".countdown-wrapper").innerHTML = 
-                    "<h2 style='color: #ffff00; font-size: 2rem; width: 100%; text-shadow: 0 0 10px #0066cc;'>Happy Retirement, Jay! Your Shift Is Over!</h2>";
-                clearInterval(timerInterval);
-                return;
-            }
-
-            // Calculations for time fragments
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-            // Output values into HTML elements with mandatory leading zero fallback
-            document.getElementById("days").innerText = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        // Display message once retirement time arrives
+        if (difference <= 0) {
+            document.querySelector(".countdown-wrapper").innerHTML = 
+                "<h2 style='color: #ffff00; font-size: 2rem; width: 100%; text-shadow: 0 0 10px #0066cc;'>Happy Retirement, Jay! Your Shift Is Over!</h2>";
+            clearInterval(timerInterval);
+            return;
         }
 
-        // Initialize clock mechanics immediately
-        updateCountdown();
-        const timerInterval = setInterval(updateCountdown, 1000);
-    </script>
+        // Calculations for time fragments
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        // Output numbers into HTML elements with mandatory leading zero fallback
+        document.getElementById("days").innerText = days.toString().padStart(2, '0');
+        document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+        document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+        document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+
+        // Dynamically update labels based on singular vs plural rules
+        document.querySelector("#days + .label").innerText = days === 1 ? "Day" : "Days";
+        document.querySelector("#hours + .label").innerText = hours === 1 ? "Hour" : "Hours";
+        document.querySelector("#minutes + .label").innerText = minutes === 1 ? "Minute" : "Minutes";
+        document.querySelector("#seconds + .label").innerText = seconds === 1 ? "Second" : "Seconds";
+    }
+
+    // Initialize clock mechanics immediately
+    updateCountdown();
+    const timerInterval = setInterval(updateCountdown, 1000);
+</script>
 </body>
 </html>
