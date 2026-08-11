@@ -11,19 +11,41 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Arial', sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Background police retirement image with a dark blue tint overlay */
-            background: linear-gradient(rgba(10, 25, 47, 0.75), rgba(5, 15, 35, 0.85)), 
-                        url('https://unsplash.com') no-repeat center center fixed;
-            background-size: cover;
             color: #fff;
             text-align: center;
+            position: relative;
+            /* Deep blue dark base under the transparent logo */
+            background-color: #050f23; 
+            overflow-x: hidden;
+        }
+
+        /* 
+           Using a pseudo-element allows us to change the background image's 
+           opacity/semi-transparency without bleeding into your text elements.
+        */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* 
+               REPLACE 'your-image-filename.png' with the actual path or local filename 
+               of the Nashville Police logo you just uploaded to me.
+            */
+            background: linear-gradient(rgba(10, 25, 47, 0.65), rgba(5, 15, 35, 0.75)), 
+                        url('Police logo (color).jpg') no-repeat center center fixed;
+            background-size: contain; /* Keeps the circular logo shape clean without cropping */
+            opacity: 0.35; /* Adjust this decimal value to make it more or less semi-transparent */
+            z-index: -1; /* Pushes the image behind the text content */
         }
 
         /* Container card with deep police blue theme */
@@ -35,6 +57,8 @@
             border: 3px solid #0056b3; /* Solid royal blue frame border */
             max-width: 800px;
             width: 90%;
+            position: relative;
+            z-index: 1; /* Ensures text stays stacked cleanly above background layer */
         }
 
         h1 {
@@ -78,24 +102,24 @@
             font-size: 3.5rem;
             font-weight: bold;
             display: block;
-            margin-bottom: 5px;
+            margin-top: 5px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         /* Requirements: yellow for days/hours/minutes */
         .yellow-num {
-            color: #ffff00; 
+            color: #ffff00;
         }
 
         /* Requirements: red for seconds */
         .red-num {
-            color: #ff3333; 
+            color: #ff3333;
         }
 
         /* Requirement: white labels */
         .label {
             font-size: 1rem;
-            color: #ffffff; 
+            color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
@@ -108,7 +132,7 @@
 
     <div class="container">
         <h1>Jay's Freedom Counter</h1>
-        <div class="subtitle">Honoring 30 Years of Police Service & Protection</div>
+        <div class="subtitle">Honoring 30 Years of Nashville Metro Police Service</div>
         
         <div class="countdown-wrapper">
             <div class="time-box">
@@ -163,6 +187,5 @@
         updateCountdown();
         const timerInterval = setInterval(updateCountdown, 1000);
     </script>
-
 </body>
 </html>
