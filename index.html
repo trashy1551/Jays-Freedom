@@ -11,7 +11,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Arial', sans-serif;
             min-height: 100vh;
@@ -22,14 +21,10 @@
             text-align: center;
             position: relative;
             /* Deep blue dark base under the transparent logo */
-            background-color: #050f23; 
+            background-color: #050f23;
             overflow-x: hidden;
         }
-
-        /* 
-           Using a pseudo-element allows us to change the background image's 
-           opacity/semi-transparency without bleeding into your text elements.
-        */
+        /* Using a pseudo-element allows us to change the background image's opacity/semi-transparency without bleeding into your text elements. */
         body::before {
             content: "";
             position: absolute;
@@ -37,17 +32,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* 
-               REPLACE 'your-image-filename.png' with the actual path or local filename 
-               of the Nashville Police logo you just uploaded to me.
-            */
-            background: linear-gradient(rgba(10, 25, 47, 0.65), rgba(5, 15, 35, 0.75)), 
-                        url('police-logo.jpg') no-repeat center center fixed;
+            /* REPLACE 'your-image-filename.png' with the actual path or local filename of the Nashville Police logo you just uploaded to me. */
+            background: linear-gradient(rgba(10, 25, 47, 0.65), rgba(5, 15, 35, 0.75)), url('police-logo.jpg') no-repeat center center fixed;
             background-size: contain; /* Keeps the circular logo shape clean without cropping */
             opacity: 0.35; /* Adjust this decimal value to make it more or less semi-transparent */
             z-index: -1; /* Pushes the image behind the text content */
         }
-
         /* Container card with deep police blue theme */
         .container {
             background: rgba(13, 27, 42, 0.7); /* Adjusted opacity to 0.7 for transparency */
@@ -55,12 +45,11 @@
             border-radius: 15px;
             box-shadow: 0 0 25px rgba(0, 102, 204, 0.4); /* Police blue ambient outer glow */
             border: 3px solid #0056b3; /* Solid royal blue frame border */
-            max-width: 800px;
+            max-width: 900px; /* Slightly wider to easily fit the two extra boxes */
             width: 90%;
             position: relative;
             z-index: 1; /* Ensures text stays stacked cleanly above background layer */
         }
-
         h1 {
             font-size: 3rem;
             margin-bottom: 10px;
@@ -69,7 +58,6 @@
             color: #ffffff;
             text-shadow: 0 0 10px rgba(0, 153, 255, 0.6); /* Blue title glow */
         }
-
         .subtitle {
             font-size: 1.2rem;
             color: #8ecae6; /* Crisp light-blue accent text */
@@ -78,25 +66,22 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-
         /* Countdown display block layout */
         .countdown-wrapper {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 15px;
         }
-
         .time-box {
             flex: 1;
-            min-width: 120px;
-            padding: 20px 15px;
+            min-width: 110px;
+            padding: 20px 10px;
             background: rgba(22, 38, 57, 0.6); /* Adjusted opacity to 0.6 for transparency */
             border-radius: 8px;
             border: 1px solid rgba(0, 153, 255, 0.3); /* Subtle blue boundary line */
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
         }
-
         /* Styling numbers according to rules */
         .number {
             font-size: 3.5rem;
@@ -105,17 +90,14 @@
             margin-top: 5px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
-
-        /* Requirements: yellow for days/hours/minutes */
+        /* Requirements: yellow for years/months/days/hours/minutes */
         .yellow-num {
             color: #ffff00;
         }
-
         /* Requirements: red for seconds */
         .red-num {
             color: #ff3333;
         }
-
         /* Requirement: white labels */
         .label {
             font-size: 1rem;
@@ -126,9 +108,8 @@
             display: block;
             margin-top: 5px;
         }
-
         /* Mobile Optimization Rules */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .container {
                 padding: 25px 20px; /* Reduces heavy padding on mobile screens */
             }
@@ -142,85 +123,118 @@
                 gap: 10px; /* Tightens the spacing between boxes */
             }
             .time-box {
-                min-width: 65px; /* Allows boxes to sit side-by-side or wrap neatly */
+                min-width: 80px; /* Allows 6 boxes to sit side-by-side or wrap neatly */
                 padding: 12px 5px; /* Slims down the inner box padding */
             }
             .number {
                 font-size: 1.8rem; /* Makes the counter numbers smaller so they fit */
             }
             .label {
-                font-size: 0.75rem; /* Shrinks the text labels slightly */
+                font-size: 0.7rem; /* Shrinks the text labels slightly */
             }
         }
     </style>
 </head>
 <body>
-
     <div class="container">
         <h1>Jay's Freedom Counter</h1>
         <div class="subtitle">Countdown to Monday after Nashville's Superbowl</div>
-        
         <div class="countdown-wrapper">
             <div class="time-box">
+                <span class="number yellow-num" id="years">00</span>
+                <span class="label" id="years-label">Years</span>
+            </div>
+            <div class="time-box">
+                <span class="number yellow-num" id="months">00</span>
+                <span class="label" id="months-label">Months</span>
+            </div>
+            <div class="time-box">
                 <span class="number yellow-num" id="days">00</span>
-                <span class="label">Days</span>
+                <span class="label" id="days-label">Days</span>
             </div>
             <div class="time-box">
                 <span class="number yellow-num" id="hours">00</span>
-                <span class="label">Hours</span>
+                <span class="label" id="hours-label">Hours</span>
             </div>
             <div class="time-box">
                 <span class="number yellow-num" id="minutes">00</span>
-                <span class="label">Minutes</span>
+                <span class="label" id="minutes-label">Minutes</span>
             </div>
             <div class="time-box">
                 <span class="number red-num" id="seconds">00</span>
-                <span class="label">Seconds</span>
+                <span class="label" id="seconds-label">Seconds</span>
             </div>
         </div>
     </div>
 
-        <script>
-        // Set target date: February 11th, 2030 at 16:00:00 (4:00 PM)
-        const targetDate = new Date("Feb 11, 2030 16:00:00").getTime();
+    <script>
+        // Set specific target date objects
+        const targetDate = new Date("Feb 11, 2030 16:00:00");
 
         function updateCountdown() {
-            const now = new Date().getTime();
-            const difference = targetDate - now;
+            const now = new Date();
+            const difference = targetDate.getTime() - now.getTime();
 
             // Display message once retirement time arrives
             if (difference <= 0) {
-                document.querySelector(".container").innerHTML = 
-                    `<h1 style='color: #ffff00; font-size: 2.5rem; margin-bottom: 20px; text-shadow: 0 0 15px rgba(0, 102, 204, 0.8);'>
+                document.querySelector(".container").innerHTML = `
+                    <h1 style='color: #ffff00; font-size: 2.5rem; margin-bottom: 20px; text-shadow: 0 0 15px rgba(0, 102, 204, 0.8);'>
                         Congratulations, Jay!
-                     </h1>
-                     <p style='color: #a5ceea; font-size: 1.4rem; line-height: 1.6; font-weight: bold; margin-bottom: 15px;'>
-                        Thank you for your unwavering dedication and exceptional leadership in serving the City of Nashville for over 30 years!! 
-                     </p>
-                     <p style='color: #f6f6f6; font-size: 1.2rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;'>
+                    </h1>
+                    <p style='color: #a5ceea; font-size: 1.4rem; line-height: 1.6; font-weight: bold; margin-bottom: 15px;'>
+                        Thank you for your unwavering dedication and exceptional leadership in serving the City of Nashville for over 30 years!!
+                    </p>
+                    <p style='color: #f6f6f6; font-size: 1.2rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;'>
                         Enjoy your well-deserved retirement!
-                     </p>`;
+                    </p>
+                `;
                 clearInterval(timerInterval);
                 return;
             }
 
-            // Calculations for time fragments
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            // High-precision calendar math for Years and Months
+            let years = targetDate.getFullYear() - now.getFullYear();
+            let months = targetDate.getMonth() - now.getMonth();
+            let days = targetDate.getDate() - now.getDate();
+            
+            let hours = targetDate.getHours() - now.getHours();
+            let minutes = targetDate.getMinutes() - now.getMinutes();
+            let seconds = targetDate.getSeconds() - now.getSeconds();
+
+            // Adjust backwards for negative seconds
+            if (seconds < 0) {
+                seconds += 60;
+                minutes--;
+            }
+            // Adjust backwards for negative minutes
+            if (minutes < 0) {
+                minutes += 60;
+                hours--;
+            }
+            // Adjust backwards for negative hours
+            if (hours < 0) {
+                hours += 24;
+                days--;
+            }
+            // Adjust backwards for negative days (relative to current month duration)
+            if (days < 0) {
+                // Find total days in the month that just passed
+                const previousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += previousMonth.getDate();
+                months--;
+            }
+            // Adjust backwards for negative months
+            if (months < 0) {
+                months += 12;
+                years--;
+            }
 
             // Output values into HTML elements with mandatory leading zero fallback
+            document.getElementById("years").innerText = years.toString().padStart(2, '0');
+            document.getElementById("months").innerText = months.toString().padStart(2, '0');
             document.getElementById("days").innerText = days.toString().padStart(2, '0');
             document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
             document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
             document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
-        }
 
-        // Initialize clock mechanics immediately
-        updateCountdown();
-        const timerInterval = setInterval(updateCountdown, 1000);
-    </script>
-
-</body>
-</html>
+            // Dynamic Singular / Plural Label Checks
