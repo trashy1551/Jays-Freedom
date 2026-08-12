@@ -50,7 +50,8 @@
 
         /* Container card with deep police blue theme */
         .container {
-            background: rgba(13, 27, 42, 0.9); /* Strong Navy/Police Blue card background */
+            /* CHANGED OPACITY FROM 0.9 TO 0.7 FOR BETTER TRANSPARENCY */
+            background: rgba(13, 27, 42, 0.7); 
             padding: 40px 60px;
             border-radius: 15px;
             box-shadow: 0 0 25px rgba(0, 102, 204, 0.4); /* Police blue ambient outer glow */
@@ -91,7 +92,8 @@
             flex: 1;
             min-width: 120px;
             padding: 20px 15px;
-            background: rgba(22, 38, 57, 0.9); /* Darker contrast blue inner boxes */
+            /* CHANGED OPACITY FROM 0.9 TO 0.6 FOR BETTER TRANSPARENCY */
+            background: rgba(22, 38, 57, 0.6); 
             border-radius: 8px;
             border: 1px solid rgba(0, 153, 255, 0.3); /* Subtle blue boundary line */
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
@@ -155,43 +157,37 @@
     </div>
 
     <script>
-    // Set target date: February 11th, 2030 at 16:00:00 (4:00 PM)
-    const targetDate = new Date("Feb 11, 2030 16:00:00").getTime();
+        // Set target date: February 11th, 2030 at 16:00:00 (4:00 PM)
+        const targetDate = new Date("Feb 11, 2030 16:00:00").getTime();
 
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const difference = targetDate - now;
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
 
-        // Display message once retirement time arrives
-        if (difference <= 0) {
-            document.querySelector(".countdown-wrapper").innerHTML = 
-                "<h2 style='color: #ffff00; font-size: 2rem; width: 100%; text-shadow: 0 0 10px #0066cc;'>Happy Retirement, Jay! Your Shift Is Over!</h2>";
-            clearInterval(timerInterval);
-            return;
+            // Display message once retirement time arrives
+            if (difference <= 0) {
+                document.querySelector(".countdown-wrapper").innerHTML = 
+                    "<h2 style='color: #ffff00; font-size: 2rem; width: 100%; text-shadow: 0 0 10px #0066cc;'>Happy Retirement, Jay! Your Shift Is Over!</h2>";
+                clearInterval(timerInterval);
+                return;
+            }
+
+            // Calculations for time fragments
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            // Output values into HTML elements with mandatory leading zero fallback
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
         }
 
-        // Calculations for time fragments
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        // Output numbers into HTML elements with mandatory leading zero fallback
-        document.getElementById("days").innerText = days.toString().padStart(2, '0');
-        document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-        document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-        document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
-
-        // Dynamically update labels based on singular vs plural rules
-        document.querySelector("#days + .label").innerText = days === 1 ? "Day" : "Days";
-        document.querySelector("#hours + .label").innerText = hours === 1 ? "Hour" : "Hours";
-        document.querySelector("#minutes + .label").innerText = minutes === 1 ? "Minute" : "Minutes";
-        document.querySelector("#seconds + .label").innerText = seconds === 1 ? "Second" : "Seconds";
-    }
-
-    // Initialize clock mechanics immediately
-    updateCountdown();
-    const timerInterval = setInterval(updateCountdown, 1000);
-</script>
+        // Initialize clock mechanics immediately
+        updateCountdown();
+        const timerInterval = setInterval(updateCountdown, 1000);
+    </script>
 </body>
 </html>
