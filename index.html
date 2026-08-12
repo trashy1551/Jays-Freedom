@@ -50,8 +50,7 @@
 
         /* Container card with deep police blue theme */
         .container {
-            /* CHANGED OPACITY FROM 0.9 TO 0.7 FOR BETTER TRANSPARENCY */
-            background: rgba(13, 27, 42, 0.7); 
+            background: rgba(13, 27, 42, 0.7); /* Adjusted opacity to 0.7 for transparency */
             padding: 40px 60px;
             border-radius: 15px;
             box-shadow: 0 0 25px rgba(0, 102, 204, 0.4); /* Police blue ambient outer glow */
@@ -92,8 +91,7 @@
             flex: 1;
             min-width: 120px;
             padding: 20px 15px;
-            /* CHANGED OPACITY FROM 0.9 TO 0.6 FOR BETTER TRANSPARENCY */
-            background: rgba(22, 38, 57, 0.6); 
+            background: rgba(22, 38, 57, 0.6); /* Adjusted opacity to 0.6 for transparency */
             border-radius: 8px;
             border: 1px solid rgba(0, 153, 255, 0.3); /* Subtle blue boundary line */
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
@@ -128,13 +126,39 @@
             display: block;
             margin-top: 5px;
         }
+
+        /* Mobile Optimization Rules */
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px 20px; /* Reduces heavy padding on mobile screens */
+            }
+            h1 {
+                font-size: 2rem; /* Shrinks the main title */
+            }
+            .subtitle {
+                font-size: 1rem; /* Shrinks the subtitle */
+            }
+            .countdown-wrapper {
+                gap: 10px; /* Tightens the spacing between boxes */
+            }
+            .time-box {
+                min-width: 65px; /* Allows boxes to sit side-by-side or wrap neatly */
+                padding: 12px 5px; /* Slims down the inner box padding */
+            }
+            .number {
+                font-size: 1.8rem; /* Makes the counter numbers smaller so they fit */
+            }
+            .label {
+                font-size: 0.75rem; /* Shrinks the text labels slightly */
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>Jay's Freedom Counter</h1>
-        <div class="subtitle">Countdown to the monday after Nashville's Superbowl</div>
+        <div class="subtitle">Countdown to Monday after Nashville's Superbowl</div>
         
         <div class="countdown-wrapper">
             <div class="time-box">
