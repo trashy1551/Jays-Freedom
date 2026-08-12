@@ -142,27 +142,27 @@
         <div class="countdown-wrapper">
             <div class="time-box">
                 <span class="number yellow-num" id="years">00</span>
-                <span class="label" id="years-label">Years</span>
+                <span class="label">Years</span>
             </div>
             <div class="time-box">
                 <span class="number yellow-num" id="months">00</span>
-                <span class="label" id="months-label">Months</span>
+                <span class="label">Months</span>
             </div>
             <div class="time-box">
                 <span class="number yellow-num" id="days">00</span>
-                <span class="label" id="days-label">Days</span>
+                <span class="label">Days</span>
             </div>
             <div class="time-box">
                 <span class="number yellow-num" id="hours">00</span>
-                <span class="label" id="hours-label">Hours</span>
+                <span class="label">Hours</span>
             </div>
             <div class="time-box">
                 <span class="number yellow-num" id="minutes">00</span>
-                <span class="label" id="minutes-label">Minutes</span>
+                <span class="label">Minutes</span>
             </div>
             <div class="time-box">
                 <span class="number red-num" id="seconds">00</span>
-                <span class="label" id="seconds-label">Seconds</span>
+                <span class="label">Seconds</span>
             </div>
         </div>
     </div>
@@ -236,5 +236,11 @@
             document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
             document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
             document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        }
 
-            // Dynamic Singular / Plural Label Checks
+        // Initialize clock mechanics immediately
+        updateCountdown();
+        const timerInterval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
